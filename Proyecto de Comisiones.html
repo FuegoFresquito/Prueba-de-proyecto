@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PixelWave Studio | Comisiones</title>
+
+<style>
+:root {
+  --fondo: #061225;
+  --azul: #12345d;
+  --celeste: #65e2ff;
+  --violeta: #9b8cff;
+  --blanco: #e8f8ff;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--blanco);
+  background:
+    radial-gradient(circle at top left, #214d82, transparent 40%),
+    radial-gradient(circle at top right, #38245f, transparent 35%),
+    var(--fondo);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 18px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  background: #061225ee;
+  border-bottom: 1px solid #65e2ff55;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.logo span { color: var(--celeste); }
+
+nav { display: flex; gap: 18px; flex-wrap: wrap; }
+
+nav a {
+  color: var(--blanco);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover { color: var(--celeste); }
+
+section {
+  max-width: 1150px;
+  margin: auto;
+  padding: 55px 24px;
+}
+
+.hero {
+  min-height: 460px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 35px;
+}
+
+h1 {
+  font-size: clamp(42px, 6vw, 75px);
+  margin: 15px 0;
+  line-height: 1;
+}
+
+h1 span {
+  color: var(--celeste);
+}
+
+h2 {
+  font-size: 34px;
+  text-align: center;
+}
+
+.intro {
+  color: #c5d9f1;
+  line-height: 1.8;
+}
+
+.btn {
+  display: inline-block;
+  border: 0;
+  border-radius: 9px;
+  padding: 13px 18px;
+  margin-top: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  background: linear-gradient(120deg, var(--celeste), #8ab8ff);
+  color: #061225;
+}
+
+.btn:hover { filter: brightness(1.1); }
+
+.visual {
+  min-height: 300px;
+  border: 1px solid #65e2ff66;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #142e55, #101a3e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 0 55px #398cff25;
+  animation: flotar 4s ease-in-out infinite;
+}
+
+.visual .emoji { font-size: 90px; }
+
+.visual .icons {
+  font-size: 30px;
+  letter-spacing: 10px;
+}
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.subtitle {
+  text-align: center;
+  color: #bfd5ed;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: auto auto 30px;
+}
+
+.catalogo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.tarjeta {
+  padding: 25px;
+  border-radius: 18px;
+  background: linear-gradient(150deg, #102b50, #0a1932);
+  border: 1px solid #68d9ff66;
+  box-shadow: 0 12px 30px #0003;
+}
+
+.tarjeta.destacada { border-color: var(--violeta); }
+
+.tarjeta .icono { font-size: 45px; }
+
+.tarjeta h3 { font-size: 23px; }
+
+.tarjeta p, .tarjeta li {
+  color: #c2d6eb;
+  line-height: 1.7;
+}
+
+.precio {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--celeste);
+}
+
+.contenedor-formularios {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.panel {
+  padding: 25px;
+  border-radius: 18px;
+  background: #f4f9ff;
+  color: #122b4c;
+}
+
+.panel h3 { margin-top: 0; }
+
+.panel p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #526b87;
+}
+
+label {
+  display: block;
+  margin: 13px 0 6px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #b8cfe2;
+  border-radius: 9px;
+  background: white;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid #65bfff;
+}
+
+.panel .btn { width: 100%; }
+
+.aviso {
+  padding: 14px;
+  border-radius: 10px;
+  background: #e2f5ff;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+#totalPrecio {
+  font-size: 24px;
+  font-weight: bold;
+  color: #075d9d;
+}
+
+.mensaje {
+  font-size: 13px;
+  margin-top: 12px;
+  color: #12633f;
+  overflow-wrap: anywhere;
+}
+
+.solicitud {
+  background: white;
+  border: 1px solid #c5dce9;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 10px;
+  overflow-wrap: anywhere;
+}
+
+.solicitud p {
+  overflow-wrap: anywhere;
+}
+
+.solicitud button {
+  cursor: pointer;
+  padding: 7px;
+}
+
+.herramientas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.herramienta {
+  text-align: center;
+  padding: 22px 10px;
+  background: #102b50;
+  border: 1px solid #65e2ff44;
+  border-radius: 15px;
+}
+
+.herramienta span {
+  display: block;
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+footer {
+  padding: 30px;
+  text-align: center;
+  color: #a5bdd8;
+  border-top: 1px solid #65e2ff33;
+  font-size: 13px;
+}
+
+@media(max-width: 800px) {
+  .hero, .contenedor-formularios { grid-template-columns: 1fr; }
+  .catalogo { grid-template-columns: 1fr; }
+  .herramientas { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media(max-width: 450px) {
+  header { padding: 14px; }
+  nav { gap: 10px; }
+  nav a { font-size: 12px; }
+  section { padding: 35px 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">✦ PIXEL<span>WAVE</span> STUDIO</div>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#solicitar">Solicitar</a>
+    <a href="#cuenta">Mi cuenta</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+  <div>
+    <p>✦ ARTE · DISEÑO · MULTIMEDIA ✦</p>
+    <h1>Ideas que se vuelven <span>visuales.</span></h1>
+    <p class="intro">
+      Bienvenido a PixelWave Studio, un espacio creativo
+      donde tus personajes, diseños y proyectos toman forma.
+      Elige tu acabado y convierte tu imaginación en arte.
+    </p>
+    <a class="btn" href="#solicitar">Solicitar una comisión ✦</a>
+  </div>
+
+  <div class="visual">
+    <div class="icons">📷 🎬 🎧</div>
+    <div class="emoji">🎨</div>
+    <h3>CREATIVE DIGITAL STUDIO</h3>
+    <div class="icons">🖌️ 💻 ✨</div>
+  </div>
+</section>
+
+<section id="servicios">
+  <h2>Nuestros servicios</h2>
+  <p class="subtitle">
+    Elige el nivel de acabado que mejor se adapte
+    a tu proyecto. Los precios parten de una tarifa base.
+  </p>
+
+  <div class="catalogo">
+    <article class="tarjeta">
+      <div class="icono">✏️</div>
+      <h3>Boceto</h3>
+      <div class="precio">100% de la base</div>
+      <p>Precio estándar para explorar una idea.</p>
+      <ul>
+        <li>Líneas expresivas</li>
+        <li>Composición sencilla</li>
+        <li>Concepto inicial</li>
+      </ul>
+      <a class="btn" href="#solicitar" onclick="elegir('sketch')">
+        Elegir boceto
+      </a>
+    </article>
+
+    <article class="tarjeta destacada">
+      <div class="icono">🖋️</div>
+      <h3>Más estilizado</h3>
+      <div class="precio">+15%</div>
+      <p>Un acabado más limpio y detallado.</p>
+      <ul>
+        <li>Lineart definido</li>
+        <li>Detalles adicionales</li>
+        <li>Acabado intermedio</li>
+      </ul>
+      <a class="btn" href="#solicitar" onclick="elegir('stylized')">
+        Elegir estilizado
+      </a>
+    </article>
+
+    <article class="tarjeta">
+      <div class="icono">🖥️</div>
+      <h3>Renderizado</h3>
+      <div class="precio">+25%</div>
+      <p>Una presentación visual más completa.</p>
+      <ul>
+        <li>Color y sombreado</li>
+        <li>Luces y texturas</li>
+        <li>Mayor nivel de detalle</li>
+      </ul>
+      <a class="btn" href="#solicitar" onclick="elegir('render')">
+        Elegir renderizado
+      </a>
+    </article>
+  </div>
+</section>
+
+<section id="solicitar">
+  <h2>Solicita tu comisión</h2>
+  <p class="subtitle">
+    Crea tu cuenta de demostración y registra tu proyecto.
+  </p>
+
+  <div class="contenedor-formularios">
+
+    <div class="panel" id="cuenta">
+      <h3>👤 Registro de usuario</h3>
+      <p>
+        Crea una cuenta para guardar y consultar tus solicitudes
+        en este navegador.
+      </p>
+
+      <form id="registro">
+        <label for="nombre">Nombre o alias *</label>
+        <input id="nombre" maxlength="50" required
+               placeholder="Tu nombre">
+
+        <label for="correo">Correo electrónico *</label>
+        <input id="correo" type="email" maxlength="100"
+               required placeholder="correo@ejemplo.com">
+
+        <label for="clave">Contraseña de demostración *</label>
+        <input id="clave" type="password" minlength="6"
+               maxlength="80" required placeholder="Mínimo 6 caracteres">
+
+        <p>Utiliza datos ficticios. Esta demostración no protege contraseñas reales.</p>
+
+        <button class="btn" type="submit">
+          Crear cuenta / Iniciar sesión
+        </button>
+      </form>
+
+      <div id="mensajeCuenta" class="mensaje" role="status"></div>
+      <p id="sesion"></p>
+
+      <button class="btn" type="button" onclick="cerrarSesion()">
+        Cerrar sesión
+      </button>
+    </div>
+
+    <div class="panel">
+      <h3>🎨 Detalles del proyecto</h3>
+
+      <form id="comision">
+        <label for="tipo">Tipo de proyecto *</label>
+        <select id="tipo" required>
+          <option value="">Selecciona una opción</option>
+          <option>Ilustración digital</option>
+          <option>Retrato o personaje</option>
+          <option>Diseño gráfico</option>
+          <option>Edición de video</option>
+          <option>Animación multimedia</option>
+          <option>Diseño para redes sociales</option>
+          <option>Otro proyecto</option>
+        </select>
+
+        <label for="acabado">Acabado *</label>
+        <select id="acabado" required>
+          <option value="sketch">Boceto — estándar</option>
+          <option value="stylized">Más estilizado (+15%)</option>
+          <option value="render">Renderizado (+25%)</option>
+        </select>
+
+        <label for="base">Tarifa base en MXN *</label>
+        <input id="base" type="number" min="1" max="1000000"
+               step="1" value="300" required>
+
+        <label for="fecha">Fecha deseada</label>
+        <input id="fecha" type="date">
+
+        <label for="descripcion">Descripción del proyecto *</label>
+        <textarea id="descripcion" maxlength="2000" required
+          placeholder="Describe tu idea, colores, estilo y referencias..."></textarea>
+
+        <label for="contacto">Contacto opcional</label>
+        <input id="contacto" maxlength="120"
+               placeholder="Usuario de red social">
+
+        <div class="aviso">
+          Total estimado:<br>
+          <span id="totalPrecio">$300 MXN</span>
+          <p id="desglose">Tarifa base, sin aumento.</p>
+        </div>
+
+        <button class="btn" type="submit">Guardar solicitud ✦</button>
+      </form>
+
+      <div id="mensajeComision" class="mensaje" role="status"></div>
+
+      <h3 style="margin-top:30px">📁 Mis solicitudes</h3>
+      <button class="btn" type="button" onclick="exportar()">
+        Exportar solicitudes JSON
+      </button>
+      <div id="solicitudes"></div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Un universo multimedia</h2>
+  <p class="subtitle">
+    Herramientas y disciplinas que inspiran nuestro estudio creativo.
+  </p>
+
+  <div class="herramientas">
+    <div class="herramienta"><span>📷</span>Fotografía</div>
+    <div class="herramienta"><span>🎬</span>Video y cine</div>
+    <div class="herramienta"><span>🎧</span>Audio</div>
+    <div class="herramienta"><span>🖌️</span>Arte digital</div>
+    <div class="herramienta"><span>🧊</span>Modelado 3D</div>
+    <div class="herramienta"><span>💡</span>Iluminación</div>
+    <div class="herramienta"><span>🧩</span>Diseño gráfico</div>
+    <div class="herramienta"><span>✨</span>Animación</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>✦ PIXELWAVE STUDIO ✦</p>
+  <p>Comisiones creativas y multimedia.</p>
+  <p>Diseñado para convertir ideas en experiencias visuales.</p>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+const CLAVE_USUARIOS = "pixelWaveUsuarios";
+const CLAVE_SESION = "pixelWaveSesion";
+const CLAVE_SOLICITUDES = "pixelWaveSolicitudes";
+
+let usuarioActual = localStorage.getItem(CLAVE_SESION) || "";
+
+function leerUsuarios() {
+  try {
+    return JSON.parse(localStorage.getItem(CLAVE_USUARIOS)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function leerSolicitudes() {
+  try {
+    return JSON.parse(localStorage.getItem(CLAVE_SOLICITUDES)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function guardarUsuarios(datos) {
+  localStorage.setItem(CLAVE_USUARIOS, JSON.stringify(datos));
+}
+
+function guardarSolicitudes(datos) {
+  localStorage.setItem(CLAVE_SOLICITUDES, JSON.stringify(datos));
+}
+
+function dinero(valor) {
+  return new Intl.NumberFormat("es-MX", {
+    style: "currency",
+    currency: "MXN",
+    maximumFractionDigits: 2
+  }).format(valor);
+}
+
+function multiplicador() {
+  const opciones = {
+    sketch: 1,
+    stylized: 1.15,
+    render: 1.25
+  };
+
+  return opciones[$("acabado").value] || 1;
+}
+
+function actualizarPrecio() {
+  const base = Number($("base").value) || 0;
+  const factor = multiplicador();
+  const total = base * factor;
+  const porcentaje = Math.round((factor - 1) * 100);
+
+  $("totalPrecio").textContent = dinero(total);
+
+  if (porcentaje > 0) {
+    $("desglose").textContent =
+      "Base: " + dinero(base) +
+      " + " + porcentaje + "% (" +
+      dinero(total - base) + ").";
+  } else {
+    $("desglose").textContent =
+      "Tarifa base sin aumento.";
+  }
+}
+
+function elegir(opcion) {
+  $("acabado").value = opcion;
+  actualizarPrecio();
+}
+
+$("acabado").addEventListener("change", actualizarPrecio);
+$("base").addEventListener("input", actualizarPrecio);
+
+$("registro").addEventListener("submit", function(evento) {
+  evento.preventDefault();
+
+  const nombre = $("nombre").value.trim();
+  const correo = $("correo").value.trim().toLowerCase();
+  const clave = $("clave").value;
+
+  const usuarios = leerUsuarios();
+  const existente = usuarios.find(u => u.correo === correo);
+
+  if (existente) {
+    if (existente.clave !== clave) {
+      $("mensajeCuenta").textContent =
+        "El correo ya existe y la contraseña no coincide.";
+      return;
+    }
+
+    usuarioActual = correo;
+    localStorage.setItem(CLAVE_SESION, correo);
+
+    $("mensajeCuenta").textContent =
+      "¡Bienvenido de vuelta! Sesión iniciada.";
+
+    actualizarSesion();
+    return;
+  }
+
+  usuarios.push({
+    nombre: nombre,
+    correo: correo,
+    clave: clave
+  });
+
+  guardarUsuarios(usuarios);
+
+  usuarioActual = correo;
+  localStorage.setItem(CLAVE_SESION, correo);
+
+  $("mensajeCuenta").textContent =
+    "¡Cuenta creada correctamente!";
+
+  actualizarSesion();
+});
+
+function actualizarSesion() {
+  const usuario = leerUsuarios().find(
+    u => u.correo === usuarioActual
+  );
+
+  $("sesion").textContent = usuario
+    ? "Sesión activa: " + usuario.nombre
+    : "No has iniciado sesión.";
+
+  mostrarSolicitudes();
+}
+
+function cerrarSesion() {
+  usuarioActual = "";
+  localStorage.removeItem(CLAVE_SESION);
+
+  $("mensajeCuenta").textContent = "Sesión cerrada.";
+  actualizarSesion();
+}
+
+$("comision").addEventListener("submit", function(evento) {
+  evento.preventDefault();
+
+  if (!usuarioActual) {
+    $("mensajeComision").textContent =
+      "Primero crea una cuenta o inicia sesión.";
+    return;
+  }
+
+  const base = Number($("base").value);
+  const factor = multiplicador();
+
+  if (!Number.isFinite(base) || base <= 0) {
+    $("mensajeComision").textContent =
+      "Introduce una tarifa base válida.";
+    return;
+  }
+
+  const acabados = {
+    sketch: "Boceto",
+    stylized: "Más estilizado",
+    render: "Renderizado"
+  };
+
+  const solicitud = {
+    id: "PW-" + Date.now().toString(36).toUpperCase(),
+    correo: usuarioActual,
+    tipo: $("tipo").value,
+    acabado: acabados[$("acabado").value],
+    base: base,
+    total: Math.round(base * factor * 100) / 100,
+    fecha: $("fecha").value,
+    descripcion: $("descripcion").value.trim(),
+    contacto: $("contacto").value.trim(),
+    creado: new Date().toISOString()
+  };
+
+  const solicitudes = leerSolicitudes();
+  solicitudes.push(solicitud);
+  guardarSolicitudes(solicitudes);
+
+  $("mensajeComision").textContent =
+    "¡Solicitud guardada correctamente en este navegador!";
+
+  $("descripcion").value = "";
+  $("contacto").value = "";
+
+  mostrarSolicitudes();
+});
+
+function mostrarSolicitudes() {
+  const contenedor = $("solicitudes");
+  contenedor.replaceChildren();
+
+  if (!usuarioActual) {
+    contenedor.textContent =
+      "Inicia sesión para consultar tus solicitudes.";
+    return;
+  }
+
+  const solicitudes = leerSolicitudes()
+    .filter(s => s.correo === usuarioActual)
+    .reverse();
+
+  if (!solicitudes.length) {
+    contenedor.textContent =
+      "Todavía no tienes solicitudes guardadas.";
+    return;
+  }
+
+  solicitudes.forEach(solicitud => {
+    const tarjeta = document.createElement("div");
+    tarjeta.className = "solicitud";
+
+    const titulo = document.createElement("strong");
+    titulo.textContent =
+      solicitud.tipo + " — " + solicitud.acabado;
+
+    const descripcion = document.createElement("p");
+    descripcion.textContent = solicitud.descripcion;
+
+    const precio = document.createElement("p");
+    precio.textContent =
+      "Total estimado: " + dinero(solicitud.total);
+
+    const fecha = document.createElement("p");
+    fecha.textContent =
+      "Fecha deseada: " + (solicitud.fecha || "No especificada");
+
+    const eliminar = document.createElement("button");
+    eliminar.textContent = "Eliminar solicitud";
+
+    eliminar.addEventListener("click", function() {
+      if (!confirm("¿Deseas eliminar esta solicitud?")) return;
+
+      const restantes = leerSolicitudes().filter(
+        s => s.id !== solicitud.id
+      );
+
+      guardarSolicitudes(restantes);
+      mostrarSolicitudes();
+    });
+
+    tarjeta.append(titulo, descripcion, precio, fecha, eliminar);
+    contenedor.appendChild(tarjeta);
+  });
+}
+
+function exportar() {
+  if (!usuarioActual) {
+    $("mensajeComision").textContent =
+      "Inicia sesión antes de exportar.";
+    return;
+  }
+
+  const datos = leerSolicitudes().filter(
+    s => s.correo === usuarioActual
+  );
+
+  const archivo = new Blob(
+    [JSON.stringify(datos, null, 2)],
+    { type: "application/json" }
+  );
+
+  const url = URL.createObjectURL(archivo);
+  const enlace = document.createElement("a");
+
+  enlace.href = url;
+  enlace.download = "solicitudes-pixelwave.json";
+  enlace.click();
+
+  URL.revokeObjectURL(url);
+}
+
+actualizarPrecio();
+actualizarSesion();
+</script>
+
+</body>
+</html>
